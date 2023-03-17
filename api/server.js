@@ -7,9 +7,12 @@ const express = require("express");
 */
 const server = express();
 
+//GLOBAL MIDDLEWARE
 server.use(express.json()); //Allow the use of json request body fields
 
+//ENDPOINTS
 server.get("/", (req, res) => {
+  //base endpoint
   res.send(`
         <h1> Welcome to Node! <h1>
     `);
