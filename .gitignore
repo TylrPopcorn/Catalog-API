@@ -1,4 +1,5 @@
 node_modulesx
+.env
 
 # Logs
 logs

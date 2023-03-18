@@ -4,6 +4,7 @@ const express = require("express");
 
     npm install express
     npm i -D nodemon
+    npm i dotenv
 */
 const server = express();
 
@@ -17,5 +18,14 @@ server.get("/", (req, res) => {
         <h1> Welcome to Node! <h1>
     `);
 });
+
+//Catch any endpoints that cannot be found:
+server.use("*", (req, res) => {
+  //catch all 404 errors middleware:
+  res.status(404).json({
+    message: `${req.method} ${req.baseUrl} not found`,
+  });
+});
+
 //Exports
 module.exports = server;
