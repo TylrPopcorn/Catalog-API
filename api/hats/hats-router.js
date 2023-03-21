@@ -6,7 +6,10 @@ const router = express.Router();
 
 router.get("/", (req, res, next) => {
   console.log(req.method);
-  res.send(200);
+  const hats = Hats.getHats();
+  res.status(200).send(`
+    <h1> Hats: </h1>
+  `);
 });
 
 //Exports:
