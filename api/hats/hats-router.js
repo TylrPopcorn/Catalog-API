@@ -5,23 +5,18 @@ const Hats = require("./hats-model");
 const router = express.Router();
 
 router.get("/", (req, res, next) => {
-  console.log(req.method);
   Hats.getHats()
     .then((data) => {
       //console.log(data, "<------");
-      console.log("YES");
       let successMSG = `<h1> Hats: </h1>`;
 
       let newData = Object.keys(data);
-      console.log(newData);
-      //   newData.map((element) => {
-      //     console.log(element, ":SDGFDGGS");
-      //   });
+      newData.map((hat) => {
+        successMSG += `\n${hat}`;
+      });
 
-      res.status(200).send(`
-        <h1> Hats: </h1>
-        
-      `);
+      res.status(200).send(successMSG);
+      return;
     })
     .catch((err) => {});
 });

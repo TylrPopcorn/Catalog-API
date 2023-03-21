@@ -1,7 +1,7 @@
 //
 //
 const axios = require("axios");
-const hats = [];
+const hats = {};
 //------------------
 //Functions:---
 
