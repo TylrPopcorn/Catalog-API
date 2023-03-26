@@ -12,23 +12,38 @@ const router = express.Router();
 //---------ENDPOINTS-----------:
 //---GET REQUESTS:---------//
 //
+
+//The main endpoint
 //This endPoint will get all of the current hats and show them to the user:
-router.get("/", (req, res) => {
-  //TODO Possibly have a 'retrieve'/'update' router that will add hats to ALL_HATS?
+router.get("/", (_, res) => {
+  let successMSG = `<h1> Current Hats: </h1>\n`; //Used to show the user the data
+  const hats = Hats.getCurrentHats(); //invoke the function,
 
-  //retrieve will add any new hats to ALL_HATS
-  //This router will only show curent hats and NOT add any new hats
+  if (hats.length > 0) {
+    hats.map((hat) => {
+      successMSG += `\n${hat}`; //ADD each hat name to the list.
+    });
+  } else {
+    successMSG += `\nNone`; //ADD each hat name to the list.
+  }
 
-  //The main endpoint
-  Hats.getALLHats() //invoke the function,
-    //SUCCESSFULLY retrieved all hats
+  console.log(`SUCCESS - retrieved current hats! | hat count: ${hats.length}`);
+  res.status(200).send(successMSG); //return the data.
+  return;
+  //}
+});
+
+//This endPoint will retrieve any new hats that get inputted to the api and add them to the data:
+router.get("/update", (_, res) => {
+  Hats.getNewHats()
     .then((data) => {
-      let successMSG = `<h1> Hats: </h1>`; //Used to show the user the data
+      //SUCCESSFULLY retrieved all hats
+      let successMSG = `<h1> Imported Hats: </h1>\n`; //Used to show the user the data
       data.map((hat) => {
         successMSG += `\n${hat}`; //ADD each hat name to the list.
       });
 
-      console.log(`SUCCESS - retrieved all hats!`);
+      console.log(`SUCCESS - retrieved NEW hats!`);
       res.status(200).send(successMSG); //return the data.
       return;
     })
@@ -38,15 +53,13 @@ router.get("/", (req, res) => {
       res.status(500).json({
         message: "Error retrieving hats",
       });
+      return;
     });
 });
 
-//This endPoint will retrieve any new hats that get inputted to the api:
-router.get("/retrieve", (req, res) => {});
-
 //this endPoint will show all deleted items:
-router.get("/deleted", (req, res) => {
-  let successMSG = `<h1> Deleted Hats: </h1>`; //Used to show the user the data
+router.get("/deleted", (_, res) => {
+  let successMSG = `<h1> Deleted Hats: </h1>\n`; //Used to show the user the data
 
   const DELETED_data = Hats.getDeletedHats();
   if (DELETED_data.length > 0) {
@@ -54,7 +67,9 @@ router.get("/deleted", (req, res) => {
       successMSG += `\n${hat}`; //ADD each hat name to the list.
     });
 
-    console.log(`SUCCESS - Successfully retrieved deleted items.`);
+    console.log(
+      `SUCCESS - Successfully retrieved deleted items. | deleted: ${DELETED_data.length}`
+    );
   } else {
     successMSG += `\n None`;
   }
