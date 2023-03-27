@@ -8,8 +8,13 @@ const hatsData = {
 //------------------ //------------------
 //FUNCTIONS:---
 
+//This function will get all of the current hats and show them to the user:
+function getCurrentHats() {
+  return Object.keys(hatsData.ALL_Hats); //Used to send back the final data.
+}
+
 //This function will import all hats from the catalog api:
-async function getALLHats() {
+async function getNewHats() {
   const gethats = await axios.get(
     "https://catalog.roblox.com/v1/search/items/details?Category=11&SortType=3&Limit=10"
   );
@@ -59,11 +64,37 @@ function removeHat(name) {
 
 //This function will return all deleted hats:
 function getDeletedHats() {
+  //NOTE: Once a hat is deleted from the data, it CANNOT be returned.
   return Object.keys(hatsData.Deleted_Hats); //retun an array of data.
 }
 
 //This function will get and return info about a specific hat:
-function getHat(name) {}
+function getHat(name) {
+  if (hatsData.ALL_Hats[name]) {
+    return hatsData.ALL_Hats[name]; //Return the first found item (IF there is one)
+  }
+
+  const hatsArray = Object.values(hatsData.ALL_Hats); //Turn the object into an array
+  const index = hatsArray.findIndex(
+    (item) => item.name.toLowerCase().includes(name.trim().toLowerCase()) //return the first found item with corresponding letters as 'name'
+  );
+
+  if (index >= 0) {
+    //IF anything was found
+    const item = hatsArray[index];
+    return {
+      status: true,
+      item: item, //return that first found item
+      message: `Successfully found data for: '${name}'`,
+    };
+  }
+
+  return {
+    //else return nothing
+    status: false,
+    message: `Cannot find data for hat: '${name}'`,
+  };
+}
 
 //------------------ //------------------
 //MIDDLEWARE:---
@@ -88,7 +119,8 @@ function verifyName(req, res, next) {
 //Exports
 module.exports = {
   //functions:
-  getALLHats,
+  getCurrentHats,
+  getNewHats,
   removeHat,
   getDeletedHats,
   getHat,
