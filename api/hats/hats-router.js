@@ -8,9 +8,9 @@ const { verifyName } = Hats;
 //----
 const router = express.Router();
 //
-//
 //---------ENDPOINTS-----------:
-//---GET REQUESTS:---------//
+//
+//---GET REQUESTS:---
 //
 
 //The main endpoint
@@ -34,7 +34,7 @@ router.get("/", (_, res) => {
 });
 
 //This endPoint will retrieve any new hats that get inputted to the api and add them to the data:
-router.get("/update", (_, res) => {
+router.get("/imports", (_, res) => {
   Hats.getNewHats()
     .then((data) => {
       //SUCCESSFULLY retrieved all hats
@@ -83,9 +83,38 @@ router.get("/:name", verifyName, (req, res) => {
   const { name } = req.params; //name of hat
 
   const hat = Hats.getHat(name); //Attempt to get the request hat.
+  const { status, message, item } = hat;
+
+  //IF The search was a success and an item was found:
+  if (status) {
+    let successMSG = `<h1> ${item.name} </h1>\n`; //Used to show the user the data
+
+    const arr = Object.keys(item); //Turn the object of data into an array.
+    arr.map((currItem) => {
+      //Map through the list
+      const spacer = ["description"].includes(currItem); //Decide which property needs a spacer after it
+
+      //ADD each item property to the list.
+      successMSG += `\n ${spacer ? "\n" : ""} ${currItem}: ${item[currItem]} ${
+        spacer ? "\n" : ""
+      }`;
+    });
+
+    console.log(`FETCH SUCCESS - ${message}`); //send back data to the user.
+    res.status(200).send(successMSG);
+  } else {
+    //ELSE, cannot find hat.
+    console.log(`FETCH FAILED - ${message}`); //send back data to the user.
+    res.status(400).send({
+      message: "FETCH - Failed",
+    });
+  }
+
+  return; //end.
 });
 //
-//---DELETE REQUESTS:---------//
+//---DELETE REQUESTS:-------
+//
 //
 //This endPoint will delete a hat by the name of the item
 router.delete("/:name", verifyName, (req, res) => {
