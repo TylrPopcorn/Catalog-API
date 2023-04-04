@@ -1,7 +1,7 @@
 console.log("node application practice");
 
 require("dotenv").config();
-const server = require("./api/server");
+const server = require("./server");
 const PORT = process.env.PORT || 9000;
 
 server.listen(PORT, () => {
