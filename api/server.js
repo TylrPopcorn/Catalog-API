@@ -1,13 +1,7 @@
 const express = require("express");
 
 const hatsRouter = require("./hats/hats-router");
-/*
-    Dependencies:
 
-    npm install express
-    npm i -D nodemon
-    npm i dotenv
-*/
 const server = express();
 
 //GLOBAL MIDDLEWARE
