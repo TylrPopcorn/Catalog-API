@@ -16,47 +16,59 @@ code {
   color: white;
   display: flex;
   flex-direction: column;
-  justify-content: center;
   align-items: center;
   height: 105vh;
   width: 100vw;
 }
 
-.title {
-  position: fixed;
-  top: 8%;
-  left: 50%;
-  margin-top: -50px;
-  margin-left: -100px;
-}
-
 .list-container {
-  display: flex;
-  justify-content: center;
+  width: 60%;
+  background-color: white; /* for testing purposeses &*/
 }
 
 .list-container li {
-  margin: 0;
   padding: 15px;
-  box-shadow: 0 15px 40px rgba(255, 255, 255, 1);
+  background-color: rgb(10, 10, 10);
+  box-shadow: 0 15px 40px rgb(5, 5, 5);
   list-style: none;
   font-size: 2em;
+  border-radius: 12px;
 }
 
-.list-container li div {
+/* .list-container li div { */
+.list-container li .item-container {
+  background-color: white;
   display: flex;
+  margin-top: 5px;
+  cursor: pointer;
+  /* box-sizing: border-box; */
+}
+
+.item-id {
+  background-color: red;
+}
+
+.list-container li div:hover {
+  content: "";
+  top: 0;
+  left: 20px;
+  width: 100%;
+  z-index: 9;
+  background: red;
 }
 
 .list-container li div img {
   border-radius: 20px;
+  margin-left: 10px;
   max-width: 100%;
   height: 100px;
-  margin-top: 3px;
+  margin-top: 10px;
 }
 
-.list-container li div p {
+.item-name {
   /* margin-top: 50px; */
   /* height: 100%; */
   padding: 10px;
-  background-color: red;
+  margin-right: 10px;
+  background-color: green; /* FOR TESTING */
 }
