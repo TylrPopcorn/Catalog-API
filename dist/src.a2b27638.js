@@ -28963,19 +28963,19 @@ function App() {
   }, /*#__PURE__*/_react.default.createElement("li", null, /*#__PURE__*/_react.default.createElement("div", {
     className: "item-container"
   }, /*#__PURE__*/_react.default.createElement("div", {
-    className: "item-id"
+    className: "itm-img-section"
   }, /*#__PURE__*/_react.default.createElement("img", {
     className: "item-thumbnail",
     alt: "",
     src: "https://cdn.discordapp.com/attachments/548209804825460760/1064417656125542400/Screenshot_2023-01-16_at_12.34.58_AM.png"
   }), /*#__PURE__*/_react.default.createElement("p", {
     className: "item-id"
-  }, " ID ")), /*#__PURE__*/_react.default.createElement("p", {
+  }, " 1234567890 ")), /*#__PURE__*/_react.default.createElement("p", {
     className: "item-name"
   }, " TEST TEXT ")), /*#__PURE__*/_react.default.createElement("div", {
     className: "item-container"
   }, /*#__PURE__*/_react.default.createElement("div", {
-    className: "item-id"
+    className: "itm-img-section"
   }, /*#__PURE__*/_react.default.createElement("img", {
     className: "item-thumbnail",
     alt: "",
@@ -28984,7 +28984,7 @@ function App() {
     className: "item-id"
   }, " ID ")), /*#__PURE__*/_react.default.createElement("p", {
     className: "item-name"
-  }, " TEST TEXT / REASAAALLLY LONG TEXZXXXT ")))));
+  }, " TEST TEXT ")))));
 }
 var _default = App;
 exports.default = _default;
@@ -29030,7 +29030,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "62523" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "62844" + '/');
   ws.onmessage = function (event) {
     checkedAssets = {};
     assetsToAccept = [];
