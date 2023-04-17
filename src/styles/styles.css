@@ -10,15 +10,29 @@ code {
     monospace;
 }
 
+/*
+ 
+  <a href="#" class="neon-button">Neon</a>
+
+  :root{
+    --clr-neon: hsl(317 100% 54%);
+    --clr-bg: hsl(323 21% 16%);
+  }
+*/
+
 .App {
   /* background-color: grey; */
-  background-color: black;
+  background-color: rgb(10, 10, 10);
   color: white;
   display: flex;
   flex-direction: column;
   align-items: center;
   height: 105vh;
   width: 100vw;
+}
+
+.title {
+  font-size: 40px;
 }
 
 .list-container {
@@ -28,15 +42,15 @@ code {
 
 .list-container li {
   padding: 10px;
-  background-color: rgb(10, 10, 10);
-  box-shadow: 0 15px 40px rgb(5, 5, 5);
+  background-color: rgb(17, 17, 17);
+  box-shadow: 0 15px 40px rgb(7, 7, 7);
   list-style: none;
   font-size: 2em;
   border-radius: 12px;
 }
 
 .item-container {
-  border: 1px solid rgb(255, 0, 0);
+  border: 2px solid rgb(255, 255, 255);
   margin-top: 5px;
 }
 
@@ -45,6 +59,10 @@ code {
   justify-content: space-between;
   cursor: pointer;
   border-radius: 12px;
+  text-decoration: none;
+  color: hsl(0, 0%, 100%);
+  text-shadow: 0 0 0.125em white, 0 0 1em currentColor;
+  background-color: hsl(0, 86%, 48%); /* NEON */
 }
 
 .list-container li div:hover {
@@ -65,7 +83,7 @@ code {
 
 .item-id {
   margin-left: 10px;
-  background-color: red; /* FOR TESTING */
+  background-color: rgb(92, 91, 91); /* FOR TESTING */
 }
 
 .item-name {
