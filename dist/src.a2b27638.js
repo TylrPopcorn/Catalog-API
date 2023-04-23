@@ -28972,7 +28972,7 @@ function App() {
     className: "item-id"
   }, " 1234567890 ")), /*#__PURE__*/_react.default.createElement("p", {
     className: "item-name"
-  }, " TEST TEXT ")), /*#__PURE__*/_react.default.createElement("div", {
+  }, " TEST TEXT AAAAAAAAAAAA")), /*#__PURE__*/_react.default.createElement("div", {
     className: "item-container"
   }, /*#__PURE__*/_react.default.createElement("div", {
     className: "itm-img-section"
@@ -29030,7 +29030,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "53379" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "50161" + '/');
   ws.onmessage = function (event) {
     checkedAssets = {};
     assetsToAccept = [];

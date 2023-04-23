@@ -16,7 +16,7 @@ function App() {
               />
               <p className="item-id"> 1234567890 </p>
             </div>
-            <p className="item-name"> TEST TEXT </p>
+            <p className="item-name"> TEST TEXT AAAAAAAAAAAA</p>
           </div>
           {/* ------------------------------------------- */}
           <div className="item-container">
