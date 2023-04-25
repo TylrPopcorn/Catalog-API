@@ -12,7 +12,8 @@ code {
 
 :root {
   /* --var-neon: hsl(111, 100%, 54%); */
-  --var-neon: cyan;
+  --var-neon: rgb(236, 15, 203);
+  --test: var(--var-neon);
 }
 
 .App {
@@ -42,6 +43,11 @@ code {
   box-shadow: inset 0 0 0.5em rgb(0, 0, 0), 0 0 0.35em rgb(0, 0, 0);
   list-style: none;
   font-size: 2em;
+
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+
   border-radius: 12px;
 }
 
@@ -50,7 +56,9 @@ code {
 
   /* border: 6px solid rgb(10, 10, 10); */
 
-  background-color: rgba(22, 22, 22, 0.5);
+  /* background-color: rgba(22, 129, 171, 0.1); */
+  background-color: var(--var-neon), 0.6;
+
   box-shadow: inset 0 0 0.6em var(--var-neon);
 
   margin-top: 5px;
@@ -60,7 +68,6 @@ code {
   color: var(--var-neon);
 
   text-shadow: 0 0 0.085em var(--var-neon), 0 0 0.2em var(--var-neon); /*NEON */
-  /* background-color: hsla(0, 0%, 13%, 0.9); NEON */
 }
 
 .list-container li div {
@@ -68,13 +75,13 @@ code {
   justify-content: space-between;
 }
 
-.list-container li .item-container:hover,
-.list-container li .item-container:focus {
+.list-container li .item-container:hover {
   /* .list-container li div:hover { */
 
   background-color: var(--var-neon);
   color: white;
-  text-shadow: none;
+  /* text-shadow: none; */
+  text-shadow: 0 0 0.035em black, 0 0 0.05em black; /*NEON */
 
   margin: 8px;
   box-shadow: 0 0 0.8em 0 var(--var-neon); /*NEON */
@@ -104,15 +111,18 @@ code {
   margin-top: 45px;
   background-color: rgb(0, 0, 0, 0);
   font-size: 60%;
+  text-align: left;
 }
 
 .item-name {
-  /* margin-top: 50px; */
-  /* height: 100%; */
-
   /* background-color: red; */
-
+  max-width: 60%;
+  min-width: 15%;
+  text-align: right;
+  overflow: hidden;
   padding: 10px;
   margin-right: 10px;
   margin-left: 10px;
 }
+
+/* CREDIT: https://codepen.io/kevinpowell/pen/QWdRzON?editors=1100 */
