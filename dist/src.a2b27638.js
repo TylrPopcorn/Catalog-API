@@ -28958,7 +28958,11 @@ function App() {
     className: "App"
   }, /*#__PURE__*/_react.default.createElement("h2", {
     className: "title"
-  }, " CATALOG API "), /*#__PURE__*/_react.default.createElement("div", {
+  }, " CATALOG API "), /*#__PURE__*/_react.default.createElement("a", {
+    className: "link",
+    href: "https://catalog.roblox.com/v1/search/items/details?Category=11&SortType=3&Limit=10",
+    title: "view and verify incoming data"
+  }, "https://catalog.roblox.com/v1/search/items/details?Category=11&SortType=3&Limit=10"), /*#__PURE__*/_react.default.createElement("div", {
     className: "list-container"
   }, /*#__PURE__*/_react.default.createElement("li", null, /*#__PURE__*/_react.default.createElement("div", {
     className: "item-container"
@@ -29030,7 +29034,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "50161" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "53626" + '/');
   ws.onmessage = function (event) {
     checkedAssets = {};
     assetsToAccept = [];

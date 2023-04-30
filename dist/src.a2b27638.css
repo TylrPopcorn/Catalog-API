@@ -11,9 +11,7 @@ code {
 }
 
 :root {
-  /* --var-neon: hsl(111, 100%, 54%); */
-  --var-neon: rgb(236, 15, 203);
-  --test: var(--var-neon);
+  --var-neon: rgb(226, 238, 14);
 }
 
 .App {
@@ -31,6 +29,15 @@ code {
   font-size: 40px;
   color: var(--var-neon);
   text-shadow: 0 0 0.525em var(--var-neon), 0 0 0.6em currentColor; /*NEON */
+}
+
+.link {
+  color: white;
+  /* font-style: italic; */
+  text-decoration: none;
+  font-size: 14px;
+  margin-top: -25px;
+  margin-bottom: 25px;
 }
 
 .list-container {
@@ -57,7 +64,7 @@ code {
   /* border: 6px solid rgb(10, 10, 10); */
 
   /* background-color: rgba(22, 129, 171, 0.1); */
-  background-color: var(--var-neon), 0.6;
+  background-color: hsla(var(--test), 0.3);
 
   box-shadow: inset 0 0 0.6em var(--var-neon);
 
@@ -76,8 +83,6 @@ code {
 }
 
 .list-container li .item-container:hover {
-  /* .list-container li div:hover { */
-
   background-color: var(--var-neon);
   color: white;
   /* text-shadow: none; */
