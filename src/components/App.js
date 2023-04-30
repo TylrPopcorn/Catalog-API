@@ -4,6 +4,14 @@ function App() {
   return (
     <div className="App">
       <h2 className="title"> CATALOG API </h2>
+      <a
+        className="link"
+        href="https://catalog.roblox.com/v1/search/items/details?Category=11&SortType=3&Limit=10"
+        title="view and verify incoming data"
+      >
+        https://catalog.roblox.com/v1/search/items/details?Category=11&SortType=3&Limit=10
+      </a>
+
       <div className="list-container">
         <li>
           {/* ------------------------------------------- */}
