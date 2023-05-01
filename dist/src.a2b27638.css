@@ -47,7 +47,7 @@ code {
 .list-container li {
   padding: 10px;
   background-color: rgb(25, 25, 25);
-  box-shadow: inset 0 0 0.5em rgb(0, 0, 0), 0 0 0.35em rgb(0, 0, 0);
+  box-shadow: inset 0 0 0.5em rgb(0, 0, 0), 0 0 0.25em rgb(0, 0, 0);
   list-style: none;
   font-size: 2em;
 
@@ -56,6 +56,13 @@ code {
   white-space: nowrap;
 
   border-radius: 12px;
+}
+
+.loading-container {
+  text-align: center;
+  margin-top: 5px;
+  margin-bottom: 5px;
+  color: var(--var-neon);
 }
 
 .item-container {

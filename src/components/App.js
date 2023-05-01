@@ -1,6 +1,28 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 
+const functions = {};
+//------------------
 function App() {
+  const [data, setData] = useState({});
+
+  useEffect(() => {
+    async function fetchData() {
+      const response = await fetch("http://localhost:9000/api/hats/");
+      const jsonData = await response.json();
+      setData(jsonData);
+    }
+    fetchData();
+
+    // axios
+    //   .get("http://localhost:9000/api/hats/imports")
+    //   .then((res) => {
+    //     console.log(res, " /n <-- DATA");
+    //   })
+    //   .catch((err) => {
+    //     console.log("Error");
+    //   });
+  }, []);
+
   return (
     <div className="App">
       <h2 className="title"> CATALOG API </h2>
@@ -15,7 +37,12 @@ function App() {
       <div className="list-container">
         <li>
           {/* ------------------------------------------- */}
-          <div className="item-container">
+          {data.length > 0 ? (
+            functions.createLabels()
+          ) : (
+            <p className="loading-container"> Loading... </p>
+          )}
+          {/* <div className="item-container">
             <div className="itm-img-section">
               <img
                 className="item-thumbnail"
@@ -26,7 +53,7 @@ function App() {
             </div>
             <p className="item-name"> TEST TEXT AAAAAAAAAAAA</p>
           </div>
-          {/* ------------------------------------------- */}
+          {/* 
           <div className="item-container">
             <div className="itm-img-section">
               <img
@@ -37,12 +64,16 @@ function App() {
               <p className="item-id"> ID </p>
             </div>
             <p className="item-name"> TEST TEXT </p>
-          </div>
+          </div> */}
           {/* ------------------------------------------- */}
         </li>
       </div>
     </div>
   );
 }
+//------------
+functions.createLabels = function () {
+  console.log("TET");
+};
 
 export default App;

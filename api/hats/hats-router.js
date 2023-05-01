@@ -16,19 +16,12 @@ const router = express.Router();
 //The main endpoint
 //This endPoint will get all of the current hats and show them to the user:
 router.get("/", (_, res) => {
-  let successMSG = `<h1> Current Hats: </h1>\n`; //Used to show the user the data
+  res.setHeader("Access-Control-Allow-Origin", "http://localhost:1234"); // Enable CORS for this route
+
   const hats = Hats.getCurrentHats(); //invoke the function,
 
-  if (hats.length > 0) {
-    hats.map((hat) => {
-      successMSG += `\n${hat}`; //ADD each hat name to the list.
-    });
-  } else {
-    successMSG += `\nNone`; //ADD each hat name to the list.
-  }
-
   console.log(`SUCCESS - retrieved current hats! | hat count: ${hats.length}`);
-  res.status(200).send(successMSG); //return the data.
+  res.status(200).send(hats); //return the data.
   return;
   //}
 });

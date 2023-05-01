@@ -28951,9 +28951,30 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.default = void 0;
-var _react = _interopRequireDefault(require("react"));
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+var _react = _interopRequireWildcard(require("react"));
+function _getRequireWildcardCache(nodeInterop) { if (typeof WeakMap !== "function") return null; var cacheBabelInterop = new WeakMap(); var cacheNodeInterop = new WeakMap(); return (_getRequireWildcardCache = function (nodeInterop) { return nodeInterop ? cacheNodeInterop : cacheBabelInterop; })(nodeInterop); }
+function _interopRequireWildcard(obj, nodeInterop) { if (!nodeInterop && obj && obj.__esModule) { return obj; } if (obj === null || typeof obj !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(nodeInterop); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (key !== "default" && Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
+const functions = {};
+//------------------
 function App() {
+  const [data, setData] = (0, _react.useState)({});
+  (0, _react.useEffect)(() => {
+    async function fetchData() {
+      const response = await fetch("http://localhost:9000/api/hats/");
+      const jsonData = await response.json();
+      setData(jsonData);
+    }
+    fetchData();
+
+    // axios
+    //   .get("http://localhost:9000/api/hats/imports")
+    //   .then((res) => {
+    //     console.log(res, " /n <-- DATA");
+    //   })
+    //   .catch((err) => {
+    //     console.log("Error");
+    //   });
+  }, []);
   return /*#__PURE__*/_react.default.createElement("div", {
     className: "App"
   }, /*#__PURE__*/_react.default.createElement("h2", {
@@ -28964,32 +28985,14 @@ function App() {
     title: "view and verify incoming data"
   }, "https://catalog.roblox.com/v1/search/items/details?Category=11&SortType=3&Limit=10"), /*#__PURE__*/_react.default.createElement("div", {
     className: "list-container"
-  }, /*#__PURE__*/_react.default.createElement("li", null, /*#__PURE__*/_react.default.createElement("div", {
-    className: "item-container"
-  }, /*#__PURE__*/_react.default.createElement("div", {
-    className: "itm-img-section"
-  }, /*#__PURE__*/_react.default.createElement("img", {
-    className: "item-thumbnail",
-    alt: "",
-    src: "https://cdn.discordapp.com/attachments/548209804825460760/1064417656125542400/Screenshot_2023-01-16_at_12.34.58_AM.png"
-  }), /*#__PURE__*/_react.default.createElement("p", {
-    className: "item-id"
-  }, " 1234567890 ")), /*#__PURE__*/_react.default.createElement("p", {
-    className: "item-name"
-  }, " TEST TEXT AAAAAAAAAAAA")), /*#__PURE__*/_react.default.createElement("div", {
-    className: "item-container"
-  }, /*#__PURE__*/_react.default.createElement("div", {
-    className: "itm-img-section"
-  }, /*#__PURE__*/_react.default.createElement("img", {
-    className: "item-thumbnail",
-    alt: "",
-    src: "https://cdn.discordapp.com/attachments/548209804825460760/1064417656125542400/Screenshot_2023-01-16_at_12.34.58_AM.png"
-  }), /*#__PURE__*/_react.default.createElement("p", {
-    className: "item-id"
-  }, " ID ")), /*#__PURE__*/_react.default.createElement("p", {
-    className: "item-name"
-  }, " TEST TEXT ")))));
+  }, /*#__PURE__*/_react.default.createElement("li", null, data.length > 0 ? functions.createLabels() : /*#__PURE__*/_react.default.createElement("p", {
+    className: "loading-container"
+  }, " Loading... "))));
 }
+//------------
+functions.createLabels = function () {
+  console.log("TET");
+};
 var _default = App;
 exports.default = _default;
 },{"react":"node_modules/react/index.js"}],"src/index.js":[function(require,module,exports) {
@@ -29034,7 +29037,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "53626" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "57923" + '/');
   ws.onmessage = function (event) {
     checkedAssets = {};
     assetsToAccept = [];
