@@ -1,11 +1,12 @@
 const express = require("express");
 
 const hatsRouter = require("./hats/hats-router");
-
+const cors = require("cors");
 const server = express();
 
 //GLOBAL MIDDLEWARE
 server.use(express.json()); //Allow the use of json request body fields
+server.use(cors()); //enable cross-origin requests
 
 server.use("/api/hats", hatsRouter); //Used for hats related endpoints.
 
