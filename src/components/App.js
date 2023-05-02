@@ -1,26 +1,29 @@
 import React, { useEffect, useState } from "react";
 
-const functions = {};
+import functions from "./App-model"; //Helper functions that support the overall app function
+//import {createLabel, getResponse,} from "./App-model"; //helper functions
 //------------------
 function App() {
   const [data, setData] = useState({});
 
   useEffect(() => {
-    async function fetchData() {
-      const response = await fetch("http://localhost:9000/api/hats/");
-      const jsonData = await response.json();
-      setData(jsonData);
-    }
-    fetchData();
+    const randomTime = Math.floor(Math.random() * 1000) + 1000; //Loading effect.
 
-    // axios
-    //   .get("http://localhost:9000/api/hats/imports")
-    //   .then((res) => {
-    //     console.log(res, " /n <-- DATA");
-    //   })
-    //   .catch((err) => {
-    //     console.log("Error");
-    //   });
+    setTimeout(async () => {
+      const CURRENT_hats = await functions.getResponse(
+        "http://localhost:9000/api/hats/"
+      );
+
+      if (CURRENT_hats.length <= 0) {
+        //IF there are no hats in the database, import some starters.
+        const IMPORTED_hats = await functions.getResponse(
+          "http://localhost:9000/api/hats/imports"
+        );
+        setData(IMPORTED_hats);
+      } else {
+        setData(CURRENT_hats);
+      }
+    }, randomTime);
   }, []);
 
   return (
@@ -37,8 +40,8 @@ function App() {
       <div className="list-container">
         <li>
           {/* ------------------------------------------- */}
-          {data.length > 0 ? (
-            functions.createLabels()
+          {data.length <= 0 ? ( //> 0
+            functions.createLabel()
           ) : (
             <p className="loading-container"> Loading... </p>
           )}
@@ -72,8 +75,5 @@ function App() {
   );
 }
 //------------
-functions.createLabels = function () {
-  console.log("TET");
-};
 
 export default App;
