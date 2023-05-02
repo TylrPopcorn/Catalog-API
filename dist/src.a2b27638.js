@@ -28965,8 +28965,20 @@ const functions = {
   createLabel,
   getResponse
 };
-function createLabel() {
-  console.log("TEST");
+function createLabel(data) {
+  console.log("TEST", data);
+
+  // <div className="item-container">
+  //   <div className="itm-img-section">
+  //     <img
+  //       className="item-thumbnail"
+  //       alt=""
+  //       src="https://cdn.discordapp.com/attachments/548209804825460760/1064417656125542400/Screenshot_2023-01-16_at_12.34.58_AM.png"
+  //     />
+  //     <p className="item-id"> 1234567890 </p>
+  //   </div>
+  //   <p className="item-name"> TEST TEXT AAAAAAAAAAAA</p>
+  // </div>;
 }
 
 //This is responsible for getting and returning any kind of response from an API.
@@ -28994,10 +29006,14 @@ function _interopRequireWildcard(obj, nodeInterop) { if (!nodeInterop && obj && 
 //------------------
 function App() {
   const [data, setData] = (0, _react.useState)({});
+
+  //function that will run after first mount:
   (0, _react.useEffect)(() => {
+    console.log("UseEffect - running");
     const randomTime = Math.floor(Math.random() * 1000) + 1000; //Loading effect.
 
     setTimeout(async () => {
+      //Attempt to get any current hats in the database:
       const CURRENT_hats = await _AppModel.default.getResponse("http://localhost:9000/api/hats/");
       if (CURRENT_hats.length <= 0) {
         //IF there are no hats in the database, import some starters.
@@ -29018,9 +29034,9 @@ function App() {
     title: "view and verify incoming data"
   }, "https://catalog.roblox.com/v1/search/items/details?Category=11&SortType=3&Limit=10"), /*#__PURE__*/_react.default.createElement("div", {
     className: "list-container"
-  }, /*#__PURE__*/_react.default.createElement("li", null, data.length <= 0 ?
-  //> 0
-  _AppModel.default.createLabel() : /*#__PURE__*/_react.default.createElement("p", {
+  }, /*#__PURE__*/_react.default.createElement("li", null, Object.keys(data).length > 0 ? (
+  //WE NEED TO FIGURE OUT A WAY TO SHARE DATA FROM ARRAYS OR OBJECTS IN THE state data.
+  console.log("sdghnfder"), _AppModel.default.createLabel(data)) : /*#__PURE__*/_react.default.createElement("p", {
     className: "loading-container"
   }, " Loading... "))));
 }
@@ -29043,7 +29059,13 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
  */
 
 const root = _client.default.createRoot(document.getElementById("root"));
-root.render( /*#__PURE__*/_react.default.createElement(_App.default, null) /* Run the main component/function */);
+/* Run the main component/function */
+root.render(
+/*#__PURE__*/
+//   <React.StrictMode>
+_react.default.createElement(_App.default, null)
+//   </React.StrictMode>
+);
 },{"react":"node_modules/react/index.js","react-dom/client":"node_modules/react-dom/client.js","./styles/styles.css":"src/styles/styles.css","./components/App":"src/components/App.js"}],"node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
