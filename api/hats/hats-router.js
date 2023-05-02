@@ -31,13 +31,8 @@ router.get("/imports", (_, res) => {
   Hats.getNewHats()
     .then((data) => {
       //SUCCESSFULLY retrieved all hats
-      let successMSG = `<h1> Imported Hats: </h1>\n`; //Used to show the user the data
-      data.map((hat) => {
-        successMSG += `\n${hat}`; //ADD each hat name to the list.
-      });
-
       console.log(`SUCCESS - retrieved NEW hats!`);
-      res.status(200).send(successMSG); //return the data.
+      res.status(200).send(data); //return the data.
       return;
     })
     //FAILED to get hats:

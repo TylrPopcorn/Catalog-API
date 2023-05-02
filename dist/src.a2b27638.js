@@ -28944,7 +28944,40 @@ module.exports = reloadCSS;
 var reloadCSS = require('_css_loader');
 module.hot.dispose(reloadCSS);
 module.hot.accept(reloadCSS);
-},{"_css_loader":"node_modules/parcel-bundler/src/builtins/css-loader.js"}],"src/components/App.js":[function(require,module,exports) {
+},{"_css_loader":"node_modules/parcel-bundler/src/builtins/css-loader.js"}],"src/components/App-model.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.createLabel = createLabel;
+exports.default = void 0;
+exports.getResponse = getResponse;
+var _react = _interopRequireDefault(require("react"));
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+//
+//
+const vars = {
+  //extra variables, debounecs, tables, etc that this file may need.
+};
+const functions = {
+  //all functions jumbled together to be exported.
+  createLabel,
+  getResponse
+};
+function createLabel() {
+  console.log("TEST");
+}
+
+//This is responsible for getting and returning any kind of response from an API.
+async function getResponse(Link) {
+  const response = await fetch(Link); //request API data.
+  const jsonData = await response.json();
+  return jsonData; //data.
+}
+var _default = functions; //[NOTE]: functions can be exported one by one or all together like done by the line above.
+exports.default = _default;
+},{"react":"node_modules/react/index.js"}],"src/components/App.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -28952,28 +28985,28 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.default = void 0;
 var _react = _interopRequireWildcard(require("react"));
+var _AppModel = _interopRequireDefault(require("./App-model"));
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 function _getRequireWildcardCache(nodeInterop) { if (typeof WeakMap !== "function") return null; var cacheBabelInterop = new WeakMap(); var cacheNodeInterop = new WeakMap(); return (_getRequireWildcardCache = function (nodeInterop) { return nodeInterop ? cacheNodeInterop : cacheBabelInterop; })(nodeInterop); }
 function _interopRequireWildcard(obj, nodeInterop) { if (!nodeInterop && obj && obj.__esModule) { return obj; } if (obj === null || typeof obj !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(nodeInterop); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (key !== "default" && Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
-const functions = {};
+//Helper functions that support the overall app function
+//import {createLabel, getResponse,} from "./App-model"; //helper functions
 //------------------
 function App() {
   const [data, setData] = (0, _react.useState)({});
   (0, _react.useEffect)(() => {
-    async function fetchData() {
-      const response = await fetch("http://localhost:9000/api/hats/");
-      const jsonData = await response.json();
-      setData(jsonData);
-    }
-    fetchData();
+    const randomTime = Math.floor(Math.random() * 1000) + 1000; //Loading effect.
 
-    // axios
-    //   .get("http://localhost:9000/api/hats/imports")
-    //   .then((res) => {
-    //     console.log(res, " /n <-- DATA");
-    //   })
-    //   .catch((err) => {
-    //     console.log("Error");
-    //   });
+    setTimeout(async () => {
+      const CURRENT_hats = await _AppModel.default.getResponse("http://localhost:9000/api/hats/");
+      if (CURRENT_hats.length <= 0) {
+        //IF there are no hats in the database, import some starters.
+        const IMPORTED_hats = await _AppModel.default.getResponse("http://localhost:9000/api/hats/imports");
+        setData(IMPORTED_hats);
+      } else {
+        setData(CURRENT_hats);
+      }
+    }, randomTime);
   }, []);
   return /*#__PURE__*/_react.default.createElement("div", {
     className: "App"
@@ -28985,17 +29018,16 @@ function App() {
     title: "view and verify incoming data"
   }, "https://catalog.roblox.com/v1/search/items/details?Category=11&SortType=3&Limit=10"), /*#__PURE__*/_react.default.createElement("div", {
     className: "list-container"
-  }, /*#__PURE__*/_react.default.createElement("li", null, data.length > 0 ? functions.createLabels() : /*#__PURE__*/_react.default.createElement("p", {
+  }, /*#__PURE__*/_react.default.createElement("li", null, data.length <= 0 ?
+  //> 0
+  _AppModel.default.createLabel() : /*#__PURE__*/_react.default.createElement("p", {
     className: "loading-container"
   }, " Loading... "))));
 }
 //------------
-functions.createLabels = function () {
-  console.log("TET");
-};
 var _default = App;
 exports.default = _default;
-},{"react":"node_modules/react/index.js"}],"src/index.js":[function(require,module,exports) {
+},{"react":"node_modules/react/index.js","./App-model":"src/components/App-model.js"}],"src/index.js":[function(require,module,exports) {
 "use strict";
 
 var _react = _interopRequireDefault(require("react"));
@@ -29011,7 +29043,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
  */
 
 const root = _client.default.createRoot(document.getElementById("root"));
-root.render( /*#__PURE__*/_react.default.createElement(_react.default.StrictMode, null, /*#__PURE__*/_react.default.createElement(_App.default, null), " "));
+root.render( /*#__PURE__*/_react.default.createElement(_App.default, null) /* Run the main component/function */);
 },{"react":"node_modules/react/index.js","react-dom/client":"node_modules/react-dom/client.js","./styles/styles.css":"src/styles/styles.css","./components/App":"src/components/App.js"}],"node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
@@ -29037,7 +29069,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "57923" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "63856" + '/');
   ws.onmessage = function (event) {
     checkedAssets = {};
     assetsToAccept = [];
