@@ -6,10 +6,13 @@ import functions from "./App-model"; //Helper functions that support the overall
 function App() {
   const [data, setData] = useState({});
 
+  //function that will run after first mount:
   useEffect(() => {
+    console.log("UseEffect - running");
     const randomTime = Math.floor(Math.random() * 1000) + 1000; //Loading effect.
 
     setTimeout(async () => {
+      //Attempt to get any current hats in the database:
       const CURRENT_hats = await functions.getResponse(
         "http://localhost:9000/api/hats/"
       );
@@ -28,7 +31,10 @@ function App() {
 
   return (
     <div className="App">
+      {/* TITLE */}
       <h2 className="title"> CATALOG API </h2>
+
+      {/* API LINK */}
       <a
         className="link"
         href="https://catalog.roblox.com/v1/search/items/details?Category=11&SortType=3&Limit=10"
@@ -37,11 +43,13 @@ function App() {
         https://catalog.roblox.com/v1/search/items/details?Category=11&SortType=3&Limit=10
       </a>
 
+      {/* LIST CONTAINER */}
       <div className="list-container">
         <li>
           {/* ------------------------------------------- */}
-          {data.length <= 0 ? ( //> 0
-            functions.createLabel()
+          {Object.keys(data).length > 0 ? (
+            //WE NEED TO FIGURE OUT A WAY TO SHARE DATA FROM ARRAYS OR OBJECTS IN THE state data.
+            (console.log("sdghnfder"), functions.createLabel(data))
           ) : (
             <p className="loading-container"> Loading... </p>
           )}

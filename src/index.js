@@ -11,4 +11,9 @@ import App from "./components/App";
  */
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
-root.render(<App /> /* Run the main component/function */);
+/* Run the main component/function */
+root.render(
+  //   <React.StrictMode>
+  <App />
+  //   </React.StrictMode>
+);

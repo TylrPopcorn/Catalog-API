@@ -27,8 +27,8 @@ async function getNewHats() {
     }
   }
 
-  const finalData = Object.keys(hatsData.ALL_Hats);
-  return finalData;
+  // const finalData = Object.keys(hatsData.ALL_Hats);
+  return hatsData.ALL_Hats;
 }
 
 //This function will remove any item from the hats list
