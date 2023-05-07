@@ -21,8 +21,9 @@ code {
   display: flex;
   flex-direction: column;
   align-items: center;
-  height: 105vh;
-  width: 100vw;
+  min-height: 100vh;
+  width: 100%;
+  min-width: 100vh;
 }
 
 .title {
@@ -67,6 +68,7 @@ code {
 
 .item-container {
   border: 3px solid var(--var-neon);
+  height: 80px;
 
   /* border: 6px solid rgb(10, 10, 10); */
 
@@ -111,9 +113,10 @@ code {
 
 .itm-img-section img {
   border-radius: 20px;
-  margin-left: 10px;
-  height: 100px;
-  margin-top: 10px;
+
+  height: 90%;
+  margin: 3%;
+  margin-left: 5px;
   min-width: 50%;
 }
 
@@ -132,9 +135,9 @@ code {
   min-width: 15%;
   text-align: right;
   overflow: hidden;
-  padding: 10px;
+  height: 50%;
   margin-right: 10px;
-  margin-left: 10px;
+  margin-top: 23px;
 }
 
 /* CREDIT: https://codepen.io/kevinpowell/pen/QWdRzON?editors=1100 */

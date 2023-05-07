@@ -11,19 +11,24 @@ const functions = {
 };
 
 export function createLabel(data) {
-  console.log("TEST", data);
+  console.log(data, "Creating label....");
+  const items = Object.keys(data);
 
-  // <div className="item-container">
-  //   <div className="itm-img-section">
-  //     <img
-  //       className="item-thumbnail"
-  //       alt=""
-  //       src="https://cdn.discordapp.com/attachments/548209804825460760/1064417656125542400/Screenshot_2023-01-16_at_12.34.58_AM.png"
-  //     />
-  //     <p className="item-id"> 1234567890 </p>
-  //   </div>
-  //   <p className="item-name"> TEST TEXT AAAAAAAAAAAA</p>
-  // </div>;
+  return items.map((item, idx) => {
+    return (
+      <div className={`item-container ${data[item.name]}`} key={item.id || idx}>
+        <div className="itm-img-section">
+          <img
+            className="item-thumbnail"
+            alt=""
+            src="https://cdn.discordapp.com/attachments/548209804825460760/1064417656125542400/Screenshot_2023-01-16_at_12.34.58_AM.png"
+          />
+          <p className="item-id"> {item.name} </p>
+        </div>
+        <p className="item-name"> TEST TEXT AAAAAAAAAAAA</p>
+      </div>
+    );
+  });
 }
 
 //This is responsible for getting and returning any kind of response from an API.
