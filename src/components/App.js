@@ -47,12 +47,11 @@ function App() {
       <div className="list-container">
         <li>
           {/* ------------------------------------------- */}
-          {Object.keys(data).length > 0 ? (
-            //WE NEED TO FIGURE OUT A WAY TO SHARE DATA FROM ARRAYS OR OBJECTS IN THE state data.
-            (console.log("sdghnfder"), functions.createLabel(data))
-          ) : (
-            <p className="loading-container"> Loading... </p>
-          )}
+          {Object.keys(data).length > 0
+            ? //WE NEED TO FIGURE OUT A WAY TO SHARE DATA FROM ARRAYS OR OBJECTS IN THE state data.
+              (console.log("sdghnfder"), functions.createLabel(data))
+            : (console.log("NO DATA"),
+              (<p className="loading-container"> Loading... </p>))}
           {/* <div className="item-container">
             <div className="itm-img-section">
               <img
