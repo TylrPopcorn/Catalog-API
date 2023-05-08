@@ -20,7 +20,9 @@ router.get("/", (_, res) => {
 
   const hats = Hats.getCurrentHats(); //invoke the function,
 
-  console.log(`SUCCESS - retrieved current hats! | hat count: ${hats.length}`);
+  console.log(
+    `SUCCESS - retrieved current hats! | hat count: ${Object.keys(hats).length}`
+  );
   res.status(200).send(hats); //return the data.
   return;
   //}
@@ -31,7 +33,7 @@ router.get("/imports", (_, res) => {
   Hats.getNewHats()
     .then((data) => {
       //SUCCESSFULLY retrieved all hats
-      console.log(`SUCCESS - retrieved NEW hats!`);
+      console.log(`SUCCESS - imported NEW hats!`);
       res.status(200).send(data); //return the data.
       return;
     })

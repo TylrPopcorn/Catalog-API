@@ -102,10 +102,9 @@ code {
 }
 
 .item-id {
-  height: 25%;
   text-align: left;
   background-color: #0000;
-  margin-top: 45px;
+  margin-top: 20%;
   margin-left: 5px;
   font-size: 60%;
 }
