@@ -27162,11 +27162,10 @@ function App() {
         const randomTime = Math.floor(Math.random() * 1000) + 1000; //Loading effect.
         setTimeout(async ()=>{
             //Attempt to get any current hats in the database:
-            const CURRENT_hats = await (0, _appModelDefault.default).getResponse("http://localhost:9000/api/hats/");
-            if (CURRENT_hats.length <= 0) {
+            let CURRENT_hats = await (0, _appModelDefault.default).getResponse("http://localhost:9000/api/hats/");
+            if (Object.keys(CURRENT_hats).length <= 0) {
                 //IF there are no hats in the database, import some starters.
                 const IMPORTED_hats = await (0, _appModelDefault.default).getResponse("http://localhost:9000/api/hats/imports");
-                setData(IMPORTED_hats);
             } else setData(CURRENT_hats);
         }, randomTime);
     }, []);
@@ -27178,7 +27177,7 @@ function App() {
                 children: " CATALOG API "
             }, void 0, false, {
                 fileName: "src/components/App.js",
-                lineNumber: 35,
+                lineNumber: 34,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("a", {
@@ -27188,7 +27187,7 @@ function App() {
                 children: "https://catalog.roblox.com/v1/search/items/details?Category=11&SortType=3&Limit=10"
             }, void 0, false, {
                 fileName: "src/components/App.js",
-                lineNumber: 38,
+                lineNumber: 37,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
@@ -27199,23 +27198,23 @@ function App() {
                         children: " Loading... "
                     }, void 0, false, {
                         fileName: "src/components/App.js",
-                        lineNumber: 54,
+                        lineNumber: 53,
                         columnNumber: 16
                     }, this))
                 }, void 0, false, {
                     fileName: "src/components/App.js",
-                    lineNumber: 48,
+                    lineNumber: 47,
                     columnNumber: 9
                 }, this)
             }, void 0, false, {
                 fileName: "src/components/App.js",
-                lineNumber: 47,
+                lineNumber: 46,
                 columnNumber: 7
             }, this)
         ]
     }, void 0, true, {
         fileName: "src/components/App.js",
-        lineNumber: 33,
+        lineNumber: 32,
         columnNumber: 5
     }, this);
 }
@@ -27256,11 +27255,12 @@ const functions = {
     getResponse
 };
 function createLabel(data) {
-    console.log(data, "Creating label....");
+    // console.log(data, "Creating label....");
     const items = Object.keys(data);
     return items.map((item, idx)=>{
+        console.log(data);
         return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
-            className: `item-container ${data[item.name]}`,
+            className: `item-container ${item}`,
             children: [
                 /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
                     className: "itm-img-section",
@@ -27278,7 +27278,7 @@ function createLabel(data) {
                             className: "item-id",
                             children: [
                                 " ",
-                                item.name,
+                                data[item].id,
                                 " "
                             ]
                         }, void 0, true, {
@@ -27294,14 +27294,14 @@ function createLabel(data) {
                 }, this),
                 /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("p", {
                     className: "item-name",
-                    children: " TEST TEXT AAAAAAAAAAAA"
+                    children: data[item].name
                 }, void 0, false, {
                     fileName: "src/components/App-model.js",
                     lineNumber: 28,
                     columnNumber: 9
                 }, this)
             ]
-        }, item.id || idx, true, {
+        }, data[item].id || idx, true, {
             fileName: "src/components/App-model.js",
             lineNumber: 19,
             columnNumber: 7

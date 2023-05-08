@@ -2,7 +2,7 @@ console.log("node application practice");
 
 require("dotenv").config();
 const server = require("./server");
-const PORT = process.env.PORT || 9000;
+const PORT = 9000; // || process.env.PORT
 
 /*
     Dependencies:

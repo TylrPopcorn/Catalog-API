@@ -13,16 +13,15 @@ function App() {
 
     setTimeout(async () => {
       //Attempt to get any current hats in the database:
-      const CURRENT_hats = await functions.getResponse(
+      let CURRENT_hats = await functions.getResponse(
         "http://localhost:9000/api/hats/"
       );
 
-      if (CURRENT_hats.length <= 0) {
+      if (Object.keys(CURRENT_hats).length <= 0) {
         //IF there are no hats in the database, import some starters.
         const IMPORTED_hats = await functions.getResponse(
           "http://localhost:9000/api/hats/imports"
         );
-        setData(IMPORTED_hats);
       } else {
         setData(CURRENT_hats);
       }

@@ -2,7 +2,7 @@
 //
 const axios = require("axios");
 const hatsData = {
-  ALL_Hats: { TEST: "TEST", TEST2: "TEST", TEST22: "TEST" },
+  ALL_Hats: {},
   Deleted_Hats: {},
 };
 //------------------ //------------------
@@ -10,7 +10,6 @@ const hatsData = {
 
 //This function will get all of the current hats and show them to the user:
 function getCurrentHats() {
-  // return Object.keys(hatsData.ALL_Hats); //Used to send back the final data. [array only]
   return hatsData.ALL_Hats; //return all of the hats WITH their data.
 }
 
