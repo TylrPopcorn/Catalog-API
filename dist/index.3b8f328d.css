@@ -10,7 +10,7 @@ code {
 }
 
 :root {
-  --var-neon: #e2ee0e;
+  --var-neon: #ee0e59;
 }
 
 .App {
@@ -104,7 +104,7 @@ code {
 .item-id {
   text-align: left;
   background-color: #0000;
-  margin-top: 20%;
+  margin-top: 33px;
   margin-left: 5px;
   font-size: 60%;
 }
