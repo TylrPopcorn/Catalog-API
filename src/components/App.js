@@ -4,11 +4,15 @@ import functions from "./App-model"; //Helper functions that support the overall
 //import {createLabel, getResponse,} from "./App-model"; //helper functions
 //------------------
 function App() {
-  const [data, setData] = useState({});
+  const [data, setData] = useState({
+    //app info:
+    items: {}, //all items
+    loadingMsg: "Loading...", //msgs for the loading (DEFAULT: Loading...)
+  });
 
   //function that will run after first mount:
   useEffect(() => {
-    console.log("UseEffect - running");
+    //console.log("UseEffect - running");
     const randomTime = Math.floor(Math.random() * 1000) + 1000; //Loading effect.
 
     setTimeout(async () => {
@@ -19,12 +23,15 @@ function App() {
 
       if (Object.keys(CURRENT_hats).length <= 0) {
         //IF there are no hats in the database, import some starters.
-        const IMPORTED_hats = await functions.getResponse(
+        CURRENT_hats = await functions.getResponse(
           "http://localhost:9000/api/hats/imports"
         );
-      } else {
-        setData(CURRENT_hats);
       }
+
+      setData({
+        ...data,
+        items: CURRENT_hats,
+      });
     }, randomTime);
   }, []);
 
@@ -46,34 +53,10 @@ function App() {
       <div className="list-container">
         <li>
           {/* ------------------------------------------- */}
-          {Object.keys(data).length > 0
-            ? //WE NEED TO FIGURE OUT A WAY TO SHARE DATA FROM ARRAYS OR OBJECTS IN THE state data.
-              (console.log("sdghnfder"), functions.createLabel(data))
+          {Object.keys(data.items).length > 0
+            ? (console.log("sdghnfder"), functions.createLabel(data.items))
             : (console.log("NO DATA"),
-              (<p className="loading-container"> Loading... </p>))}
-          {/* <div className="item-container">
-            <div className="itm-img-section">
-              <img
-                className="item-thumbnail"
-                alt=""
-                src="https://cdn.discordapp.com/attachments/548209804825460760/1064417656125542400/Screenshot_2023-01-16_at_12.34.58_AM.png"
-              />
-              <p className="item-id"> 1234567890 </p>
-            </div>
-            <p className="item-name"> TEST TEXT AAAAAAAAAAAA</p>
-          </div>
-          {/* 
-          <div className="item-container">
-            <div className="itm-img-section">
-              <img
-                className="item-thumbnail"
-                alt=""
-                src="https://cdn.discordapp.com/attachments/548209804825460760/1064417656125542400/Screenshot_2023-01-16_at_12.34.58_AM.png"
-              />
-              <p className="item-id"> ID </p>
-            </div>
-            <p className="item-name"> TEST TEXT </p>
-          </div> */}
+              (<p className="loading-container">{data.loadingMsg}</p>))}
           {/* ------------------------------------------- */}
         </li>
       </div>

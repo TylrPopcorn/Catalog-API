@@ -10,7 +10,7 @@ const hatsData = {
 
 //This function will get all of the current hats and show them to the user:
 function getCurrentHats() {
-  return hatsData.ALL_Hats; //return all of the hats WITH their data.
+  // return hatsData.ALL_Hats; //return all of the hats WITH their data.
 }
 
 //This function will import all hats from the catalog api:

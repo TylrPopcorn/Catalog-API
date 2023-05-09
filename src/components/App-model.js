@@ -10,13 +10,22 @@ const functions = {
   getResponse,
 };
 
+//This function is responsible for showing information regarding one item:
+functions.getInfo = function () {
+  console.log("YERS");
+};
+
+//This function is repsonsible for creating each label in the list:
 export function createLabel(data) {
   // console.log(data, "Creating label....");
   const items = Object.keys(data);
   return items.map((item, idx) => {
-    console.log(data);
     return (
-      <div className={`item-container ${item}`} key={data[item].id || idx}>
+      <div
+        className={`item-container ${item}`}
+        key={data[item].id || idx}
+        onClick={functions.getInfo}
+      >
         <div className="itm-img-section">
           <img
             className="item-thumbnail"

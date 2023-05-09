@@ -27155,18 +27155,24 @@ var _s = $RefreshSig$();
 //------------------
 function App() {
     _s();
-    const [data, setData] = (0, _react.useState)({});
+    const [data, setData] = (0, _react.useState)({
+        //app info:
+        items: {},
+        loadingMsg: "Loading..."
+    });
     //function that will run after first mount:
     (0, _react.useEffect)(()=>{
-        console.log("UseEffect - running");
+        //console.log("UseEffect - running");
         const randomTime = Math.floor(Math.random() * 1000) + 1000; //Loading effect.
         setTimeout(async ()=>{
             //Attempt to get any current hats in the database:
             let CURRENT_hats = await (0, _appModelDefault.default).getResponse("http://localhost:9000/api/hats/");
-            if (Object.keys(CURRENT_hats).length <= 0) {
-                //IF there are no hats in the database, import some starters.
-                const IMPORTED_hats = await (0, _appModelDefault.default).getResponse("http://localhost:9000/api/hats/imports");
-            } else setData(CURRENT_hats);
+            if (Object.keys(CURRENT_hats).length <= 0) //IF there are no hats in the database, import some starters.
+            CURRENT_hats = await (0, _appModelDefault.default).getResponse("http://localhost:9000/api/hats/imports");
+            setData({
+                ...data,
+                items: CURRENT_hats
+            });
         }, randomTime);
     }, []);
     return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
@@ -27177,7 +27183,7 @@ function App() {
                 children: " CATALOG API "
             }, void 0, false, {
                 fileName: "src/components/App.js",
-                lineNumber: 34,
+                lineNumber: 41,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("a", {
@@ -27187,38 +27193,38 @@ function App() {
                 children: "https://catalog.roblox.com/v1/search/items/details?Category=11&SortType=3&Limit=10"
             }, void 0, false, {
                 fileName: "src/components/App.js",
-                lineNumber: 37,
+                lineNumber: 44,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
                 className: "list-container",
                 children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("li", {
-                    children: Object.keys(data).length > 0 ? (console.log("sdghnfder"), (0, _appModelDefault.default).createLabel(data)) : (console.log("NO DATA"), /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("p", {
+                    children: Object.keys(data.items).length > 0 ? (console.log("sdghnfder"), (0, _appModelDefault.default).createLabel(data.items)) : (console.log("NO DATA"), /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("p", {
                         className: "loading-container",
-                        children: " Loading... "
+                        children: data.loadingMsg
                     }, void 0, false, {
                         fileName: "src/components/App.js",
-                        lineNumber: 53,
+                        lineNumber: 59,
                         columnNumber: 16
                     }, this))
                 }, void 0, false, {
                     fileName: "src/components/App.js",
-                    lineNumber: 47,
+                    lineNumber: 54,
                     columnNumber: 9
                 }, this)
             }, void 0, false, {
                 fileName: "src/components/App.js",
-                lineNumber: 46,
+                lineNumber: 53,
                 columnNumber: 7
             }, this)
         ]
     }, void 0, true, {
         fileName: "src/components/App.js",
-        lineNumber: 32,
+        lineNumber: 39,
         columnNumber: 5
     }, this);
 }
-_s(App, "tNVKLF/eI269iIOS4WygXQde5D8=");
+_s(App, "JwpUfhYvDigZcfWI/MA8BT2pZvw=");
 _c = App;
 //------------
 exports.default = App;
@@ -27239,6 +27245,7 @@ $parcel$ReactRefreshHelpers$02aa.prelude(module);
 try {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
+//This function is repsonsible for creating each label in the list:
 parcelHelpers.export(exports, "createLabel", ()=>createLabel);
 //This is responsible for getting and returning any kind of response from an API.
 parcelHelpers.export(exports, "getResponse", ()=>getResponse);
@@ -27254,13 +27261,17 @@ const functions = {
     createLabel,
     getResponse
 };
+//This function is responsible for showing information regarding one item:
+functions.getInfo = function() {
+    console.log("YERS");
+};
 function createLabel(data) {
     // console.log(data, "Creating label....");
     const items = Object.keys(data);
     return items.map((item, idx)=>{
-        console.log(data);
         return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
             className: `item-container ${item}`,
+            onClick: functions.getInfo,
             children: [
                 /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
                     className: "itm-img-section",
@@ -27271,7 +27282,7 @@ function createLabel(data) {
                             src: "https://cdn.discordapp.com/attachments/548209804825460760/1064417656125542400/Screenshot_2023-01-16_at_12.34.58_AM.png"
                         }, void 0, false, {
                             fileName: "src/components/App-model.js",
-                            lineNumber: 21,
+                            lineNumber: 30,
                             columnNumber: 11
                         }, this),
                         /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("p", {
@@ -27283,13 +27294,13 @@ function createLabel(data) {
                             ]
                         }, void 0, true, {
                             fileName: "src/components/App-model.js",
-                            lineNumber: 26,
+                            lineNumber: 35,
                             columnNumber: 11
                         }, this)
                     ]
                 }, void 0, true, {
                     fileName: "src/components/App-model.js",
-                    lineNumber: 20,
+                    lineNumber: 29,
                     columnNumber: 9
                 }, this),
                 /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("p", {
@@ -27297,13 +27308,13 @@ function createLabel(data) {
                     children: data[item].name
                 }, void 0, false, {
                     fileName: "src/components/App-model.js",
-                    lineNumber: 28,
+                    lineNumber: 37,
                     columnNumber: 9
                 }, this)
             ]
         }, data[item].id || idx, true, {
             fileName: "src/components/App-model.js",
-            lineNumber: 19,
+            lineNumber: 24,
             columnNumber: 7
         }, this);
     });
