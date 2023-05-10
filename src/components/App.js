@@ -27,7 +27,7 @@ function App() {
           "http://localhost:9000/api/hats/imports"
         );
       }
-
+      //
       setData({
         ...data,
         items: CURRENT_hats,
