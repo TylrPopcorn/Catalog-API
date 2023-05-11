@@ -1,3 +1,8 @@
+**THIS REPOSITORY HAS BEEN MOVED TO:
+
+This is due to the project unexpectedly breaking and not working all together for some reason. As a noob, I am unable to figure it out so I simply just moved the repo to a working location.**
+
+
 # Catalog-Api-/
 
 The following project is a simple implementation of Node.js. This project makes use of the an api provided by ROBLOX (https://www.roblox.com/) 
