@@ -1,7 +1,6 @@
-**THIS REPOSITORY HAS BEEN MOVED TO:
+**THIS REPOSITORY HAS BEEN MOVED TO: https://github.com/TylrPopcorn/Catalog-API-2
 
 This is due to the project unexpectedly breaking and not working all together for some reason. As a noob, I am unable to figure it out so I simply just moved the repo to a working location.
-https://github.com/TylrPopcorn/Catalog-API-2
 **
 
 
